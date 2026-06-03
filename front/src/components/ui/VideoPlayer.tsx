@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./VideoPlayer.css"
 
 type VideoPlayerProps = {
@@ -7,7 +6,6 @@ type VideoPlayerProps = {
 };
 
 export const VideoPlayer = ({ src, className }: VideoPlayerProps) => {
-  const [loading, setLoading] = useState(true);
   return (
     <>
       <video
@@ -15,7 +13,6 @@ export const VideoPlayer = ({ src, className }: VideoPlayerProps) => {
         autoPlay
         loop
         muted
-        onLoadedData={() => setLoading(false)}
         playsInline
         style={{
           width: "100%",

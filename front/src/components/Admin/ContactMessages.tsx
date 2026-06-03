@@ -22,7 +22,6 @@ interface ContactMessage {
 const ContactMessages: React.FC = () => {
   const [messages, setMessages] = useState<ContactMessage[]>([])
   const [loading, setLoading] = useState(true)
-  const [selectedMessage, setSelectedMessage] = useState<ContactMessage | null>(null)
 
   useLayoutEffect(() => {
     fetchMessages()

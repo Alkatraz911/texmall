@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-unused-vars -- хендлеры относятся к временно отключённым (закомментированным) блокам редактора */
 
 import React, { useEffect, useState } from "react";
 import { homePageAPI, categoryAPI } from "../../services/api";
