@@ -59,9 +59,6 @@ const HomePage: React.FC = () => {
           <div className="hero-overlay">
             <div className="hero-content">
               <h1 className="hero-title">{data.heroTitle}</h1>
-              {data.heroSubtitle && (
-                <p className="hero-subtitle">{data.heroSubtitle}</p>
-              )}
               <div className="hero-btn">
                 <Link to="/catalog" className="btn-luxury">
                   Смотреть каталог &rarr;

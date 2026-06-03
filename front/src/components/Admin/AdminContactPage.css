@@ -31,7 +31,7 @@
 
 /* Кнопка сохранения */
 .admin-contact-save-btn {
-  background: #10b981;
+  background: var(--accent);
   color: #fff;
   font-weight: 600;
   padding: 10px 18px;
@@ -42,11 +42,11 @@
 }
 
 .admin-contact-save-btn:hover {
-  background: #4338ca;
+  background: var(--accent-deep);
 }
 
 .admin-contact-save-btn:disabled {
-  background: #a5b4fc;
+  background: var(--accent-soft);
   cursor: not-allowed;
 }
 
@@ -83,7 +83,7 @@
 
 .admin-contact-input:focus,
 .admin-contact-textarea:focus {
-  border-color: #4f46e5;
+  border-color: var(--accent);
   background: #fff;
   outline: none;
 }

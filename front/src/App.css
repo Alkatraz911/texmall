@@ -70,6 +70,7 @@
   --text-light: var(--gold);
   --white: #ffffff;
   --border-light: var(--line);
+  --background-light: var(--surface);
 }
 
 /* ============================================================

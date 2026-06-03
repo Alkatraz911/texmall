@@ -1,55 +1,52 @@
 /* AdminLogin.css */
 
-/* Общий контейнер */
 .al-container {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  padding: clamp(40px, 10vh, 120px) 20px;
+  font-family: var(--font-body);
 }
 
-/* Обертка для центровки карточки */
 .al-login-wrapper {
   width: 100%;
   max-width: 420px;
-  padding: 20px;
 }
 
-/* Карточка логина */
 .al-login-card {
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  padding: 30px 25px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--surface-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: clamp(28px, 4vw, 40px);
 }
 
-
-
-/* Заголовок карточки */
 .al-login-header h1 {
   margin: 0;
-  font-size: 28px;
-  color: #111;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ink);
   text-align: center;
 }
 
 .al-login-header p {
   margin-top: 8px;
   font-size: 14px;
-  color: #555;
+  color: var(--ink-muted);
   text-align: center;
 }
 
-/* Форма */
 .al-login-form {
-  margin-top: 20px;
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
 }
 
-/* Группы полей */
 .al-form-group {
   display: flex;
   flex-direction: column;
@@ -59,55 +56,59 @@
 .al-form-group label {
   font-weight: 600;
   margin-bottom: 6px;
-  color: #333;
+  color: var(--ink);
 }
 
 .al-form-group input {
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-family: inherit;
+  background: #fff;
+  color: var(--ink);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 
 .al-form-group input:focus {
-  border-color: #f346dc;
-  box-shadow: 0 0 0 3px rgba(107, 115, 255, 0.2);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(198, 156, 109, 0.18);
   outline: none;
 }
 
-/* Сообщение об ошибке */
 .al-error-message {
-  color: #ff4d4f;
+  color: #c53030;
   font-size: 13px;
   margin-bottom: 12px;
   text-align: center;
 }
 
-/* Кнопка входа */
 .al-btn-primary {
-  background-color: #29d85e;
-  color: #fff;
+  background: var(--accent);
+  color: var(--on-dark);
   border: none;
-  padding: 12px 0;
-  border-radius: 10px;
-  font-weight: 600;
+  padding: 13px 0;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s var(--ease), transform 0.2s var(--ease);
 }
 
 .al-btn-primary:hover {
-  background-color: #0cdf39;
+  background: var(--accent-deep);
   transform: translateY(-2px);
 }
 
 .al-btn-primary:disabled {
-  background-color: #83cc93;
+  opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
 }
 
-/* Центровка кнопки */
 .al-login-btn {
   margin-top: 12px;
 }
