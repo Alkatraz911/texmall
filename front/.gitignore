@@ -1,0 +1,14 @@
+# dependencies
+node_modules
+
+# production build
+build
+
+# local env
+.env.local
+.env.production
+
+# archives / backups (не хранить в репозитории)
+*.rar
+*.zip
+front-new.rar

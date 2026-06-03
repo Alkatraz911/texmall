@@ -1,0 +1,52 @@
+.email-settings {
+  background: tr;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  margin: 20px auto;
+  font-family: 'Arial', sans-serif;
+  color: var(--text-dark);
+}
+
+.email-settings h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.email-settings p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+
+.update-email {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.update-email input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.update-email input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+
+
+@media (max-width: 500px) {
+  .update-email {
+    flex-direction: column;
+  }
+  
+  .update-email input {
+    width: 100%;
+  }
+}

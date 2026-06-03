@@ -1,0 +1,181 @@
+/* ============================================================
+   Главная страница — Editorial / премиум-минимализм
+   ============================================================ */
+.hero-page-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.home-page {
+  position: relative;
+  width: 100%;
+  overflow-x: clip;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  min-height: calc(100svh - var(--header-h));
+  display: flex;
+  align-items: center;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.hero-content {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(40px, 8vh, 120px) clamp(20px, 5vw, 56px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(20px, 3vw, 32px);
+  text-align: left;
+  animation: fadeInUp 1s var(--ease) forwards;
+}
+
+.hero-title {
+  max-width: 16ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.hero-subtitle {
+  max-width: 46ch;
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.hero-btn {
+  margin-top: clamp(4px, 1vw, 12px);
+}
+
+/* ---------- Витрина коллекций ---------- */
+.categories {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 64px) clamp(20px, 5vw, 56px) clamp(48px, 7vw, 96px);
+}
+
+.section-title {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ink);
+  margin-bottom: clamp(24px, 4vw, 48px);
+}
+
+.category-card {
+  position: relative;
+  display: block;
+  height: clamp(220px, 32vw, 320px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  background: var(--surface-card);
+  box-shadow: var(--shadow);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: clamp(18px, 2vw, 28px);
+  background: linear-gradient(
+    180deg,
+    rgba(26, 23, 20, 0) 35%,
+    rgba(26, 23, 20, 0.72) 100%
+  );
+}
+
+.category-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.category-overlay h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--on-dark);
+  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.category-overlay .btn-outline {
+  color: var(--on-dark);
+  border-color: rgba(255, 255, 255, 0.7);
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+.category-overlay .btn-outline:hover {
+  background: var(--on-dark);
+  color: var(--ink);
+}
+
+/* Стрелки Swiper */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--ink) !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 26px !important;
+}
+
+/* ---------- Анимации ---------- */
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content {
+    animation: none;
+  }
+}
+
+/* ---------- Адаптив ---------- */
+@media (max-width: 768px) {
+  .hero {
+    min-height: calc(100svh - var(--header-h));
+  }
+
+  .hero-content {
+    align-items: flex-start;
+    text-align: left;
+  }
+}

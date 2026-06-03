@@ -1,0 +1,150 @@
+/* Основной контейнер */
+.admin-about-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  font-family: "Inter", sans-serif;
+}
+
+/* Заголовок и кнопка сохранения */
+.admin-about-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.admin-about-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.admin-about-save-btn {
+  background: #10b981;
+  color: #fff;
+  padding: 10px 18px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.admin-about-save-btn:hover {
+  background: #2563eb;
+}
+
+.admin-about-save-btn:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
+
+/* Общий стиль форм */
+.admin-about-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-about-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-about-form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+}
+
+.admin-about-input,
+.admin-about-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  transition: border 0.2s ease;
+  background: #fff;
+}
+
+.admin-about-input:focus,
+.admin-about-textarea:focus {
+  border-color: #3b82f6;
+}
+
+.admin-about-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Блоки массивов (качество и доставка) */
+.admin-about-section {
+  background: #fff;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.admin-about-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 15px;
+}
+
+.admin-about-item {
+  background: #f3f4f6;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-about-remove-btn {
+  background: #ef4444;
+  color: #fff;
+  padding: 8px 14px;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.admin-about-remove-btn:hover {
+  background: #dc2626;
+}
+
+.admin-about-add-btn {
+  background: #10b981;
+  color: #fff;
+  padding: 8px 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s ease;
+}
+
+.admin-about-add-btn:hover {
+  background: #059669;
+}
+
+/* Состояния загрузки и пустых данных */
+.admin-about-loading,
+.admin-about-empty {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  padding: 50px 0;
+}

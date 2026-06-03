@@ -1,0 +1,241 @@
+:root {
+  --primary-color: #c53030;
+  --accent-color: #d4af37; /* золото */
+  --dark-bg: #111;
+  --light-text: #fff;
+  --gray-text: #ccc;
+}
+
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: var(--dark-bg);
+  color: var(--light-text);
+}
+
+.home-page {
+  overflow-x: hidden;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(0.4);
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.hero-content {
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  color: var(--gray-text);
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: var(--light-text);
+}
+
+.btn-primary:hover {
+  background: #a52828;
+}
+
+.btn-outline {
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+}
+
+.btn-outline:hover {
+  background: var(--accent-color);
+  color: var(--dark-bg);
+}
+
+/* ADVANTAGES */
+.advantages {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin: 80px auto;
+  max-width: 1200px;
+}
+
+.advantage-item {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  transform: translateY(50px);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.advantage-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: var(--accent-color);
+}
+
+.advantage-item h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.advantage-item p {
+  color: var(--gray-text);
+}
+
+/* CATEGORIES */
+.categories {
+  padding: 80px 20px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--accent-color);
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.category-card {
+  position: relative;
+  height: 400px;
+  background: url("https://images.unsplash.com/photo-1556905055-8f358a7a47b2") center/cover no-repeat;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--light-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.category-card:hover .category-overlay {
+  opacity: 1;
+}
+
+/* Luxury Button */
+.btn-luxury {
+  padding: 14px 36px;
+  border: 2px solid var(--accent-color);
+  background: transparent;
+  color: var(--accent-color);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.btn-luxury::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, rgba(212,175,55,0.2), rgba(212,175,55,0.8));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+
+.btn-luxury:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-luxury:hover {
+  color: var(--dark-bg);
+}
+
+/* SVG icons for advantages */
+.advantage-icon {
+  color: var(--accent-color);
+  margin-bottom: 15px;
+}
+
+.advantage-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+
+.category-overlay h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.category-overlay p {
+  color: var(--gray-text);
+  margin-bottom: 20px;
+  max-width: 250px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

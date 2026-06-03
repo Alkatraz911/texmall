@@ -1,0 +1,197 @@
+/* --- Общий контейнер --- */
+.cm-container {
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  color: #333;
+}
+
+.cm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cm-btn-primary {
+  padding: 8px 16px;
+  background-color: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.cm-btn-primary:hover {
+  background-color: #059669;
+}
+
+.cm-btn-outline {
+  padding: 6px 14px;
+  border: 1px solid #10b981;
+  color: #10b981;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cm-btn-outline:hover {
+  background: #10b981;
+  color: #fff;
+}
+
+.cm-btn-icon {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.cm-btn-icon:hover {
+  transform: scale(1.1);
+}
+
+/* --- Модальные окна --- */
+.cm-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.cm-modal-content {
+  background: #fff;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.cm-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.cm-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* --- Формы --- */
+.cm-form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cm-form-group label {
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.cm-form-group input,
+.cm-form-group select,
+.cm-form-group textarea {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.cm-form-group input:focus,
+.cm-form-group select:focus,
+.cm-form-group textarea:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.cm-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* --- Список коллекций --- */
+.cm-categories-list {
+  margin-top: 30px;
+}
+
+.cm-fabrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.cm-category-item {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.cm-fabric-image {
+  width: 100%;
+  height: 150px;
+  background: #e5e7eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cm-fabric-image video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cm-no-image {
+  color: #64748b;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.cm-category-info {
+  padding: 10px;
+}
+
+.cm-category-info h4 {
+  margin: 0;
+}
+
+.cm-category-info p {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin: 4px 0;
+}
+
+.cm-category-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 6px 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* --- Пустое состояние и загрузка --- */
+.cm-empty-state,
+.loading-state {
+  padding: 20px;
+  text-align: center;
+  color: #6b7280;
+}

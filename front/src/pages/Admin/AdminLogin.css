@@ -1,0 +1,113 @@
+/* AdminLogin.css */
+
+/* Общий контейнер */
+.al-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Обертка для центровки карточки */
+.al-login-wrapper {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+
+/* Карточка логина */
+.al-login-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  padding: 30px 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+/* Заголовок карточки */
+.al-login-header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #111;
+  text-align: center;
+}
+
+.al-login-header p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+
+/* Форма */
+.al-login-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Группы полей */
+.al-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.al-form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.al-form-group input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.al-form-group input:focus {
+  border-color: #f346dc;
+  box-shadow: 0 0 0 3px rgba(107, 115, 255, 0.2);
+  outline: none;
+}
+
+/* Сообщение об ошибке */
+.al-error-message {
+  color: #ff4d4f;
+  font-size: 13px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* Кнопка входа */
+.al-btn-primary {
+  background-color: #29d85e;
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.al-btn-primary:hover {
+  background-color: #0cdf39;
+  transform: translateY(-2px);
+}
+
+.al-btn-primary:disabled {
+  background-color: #83cc93;
+  cursor: not-allowed;
+}
+
+/* Центровка кнопки */
+.al-login-btn {
+  margin-top: 12px;
+}

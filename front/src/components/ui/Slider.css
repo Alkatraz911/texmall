@@ -1,0 +1,68 @@
+.slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.slides-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.slides {
+  display: flex;
+  transition: transform 1s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.category-video {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.category-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  background: rgba(0,0,0,0.5);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Стрелки */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: white;
+  background: rgba(0,0,0,0.3);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+  .category-video {
+    height: 200px;
+  }
+}

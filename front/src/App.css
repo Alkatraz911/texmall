@@ -1,0 +1,277 @@
+/* ============================================================
+   Шрифты
+   ============================================================ */
+@font-face {
+  font-family: "Angst";
+  src: url("./fonts/Angst-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Angst";
+  src: url("./fonts/Angst-Normal.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   Дизайн-токены
+   ============================================================ */
+:root {
+  /* Бренд / акценты */
+  --accent: #c69c6d;        /* основной «золотой» акцент */
+  --accent-deep: #a87f50;
+  --accent-soft: #e7d8c2;
+  --gold: #d3b768;
+
+  /* Текст */
+  --ink: #1a1714;           /* основной текст */
+  --ink-soft: #4a443d;
+  --ink-muted: #8a8077;
+  --on-dark: #ffffff;
+
+  /* Поверхности */
+  --surface: #f4f1ec;       /* тёплый off-white фон страниц */
+  --surface-2: #ece7df;
+  --surface-card: #ffffff;
+  --surface-veil: rgba(255, 255, 255, 0.62);
+  --line: #e4ded4;
+
+  /* Эффекты */
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --shadow: 0 10px 30px rgba(26, 23, 20, 0.10);
+  --shadow-lg: 0 24px 60px rgba(26, 23, 20, 0.18);
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Типографика */
+  --font-display: "Angst", "Segoe UI", sans-serif;
+  --font-body: "Segoe UI", "Roboto", sans-serif;
+
+  /* Раскладка */
+  --maxw: 1280px;
+  --header-h: 88px;
+
+  /* ---- Обратная совместимость со старыми именами переменных ---- */
+  --primary-color: #c53030;
+  --accent-color: var(--accent);
+  --brown-color: var(--accent);
+  --dark-bg: var(--ink);
+  --text-dark: var(--ink-soft);
+  --text-black: var(--ink);
+  --text-white: var(--on-dark);
+  --gray-bg: var(--surface-2);
+  --gray-text: var(--ink-muted);
+  --light-text: var(--gold);
+  --text-light: var(--gold);
+  --white: #ffffff;
+  --border-light: var(--line);
+}
+
+/* ============================================================
+   Сброс и базовые стили
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--ink);
+  background-color: var(--surface);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   Каркас приложения
+   ============================================================ */
+.bg-wrapper {
+  position: relative;
+  min-height: 100%;
+  background-color: var(--surface);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Градиент-вуаль поверх фотофона — гарантирует контраст текста */
+.bg-wrapper--photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.25) 35%,
+    rgba(255, 255, 255, 0.55) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.App {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 40px);
+}
+
+.section {
+  padding: clamp(40px, 6vw, 80px) 0;
+}
+
+/* ============================================================
+   Базовые кнопки
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  background: transparent;
+  transition: transform 0.25s var(--ease), background 0.25s var(--ease),
+    color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--on-dark);
+}
+
+.btn-primary:hover {
+  background: var(--accent-deep);
+}
+
+.btn-outline {
+  border: 1.5px solid currentColor;
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+.btn-outline:hover {
+  transform: translateY(-2px);
+}
+
+/* Премиум-CTA */
+.btn-luxury {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  padding: 15px 38px;
+  background: var(--accent);
+  color: var(--on-dark);
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s var(--ease), background 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+}
+
+.btn-luxury:hover {
+  transform: translateY(-3px);
+  background: var(--accent-deep);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================================
+   Состояния загрузки / 404
+   ============================================================ */
+.loading,
+.loading-state,
+.error-state,
+.empty-state {
+  width: 100%;
+  text-align: center;
+  padding: clamp(60px, 12vh, 140px) 20px;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--ink-soft);
+}
+
+.not-found {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 120px 20px;
+  text-align: center;
+}
+
+.not-found h1 {
+  font-family: var(--font-display);
+  font-size: clamp(64px, 14vw, 140px);
+  color: var(--accent);
+  line-height: 1;
+}
+
+.not-found p {
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}

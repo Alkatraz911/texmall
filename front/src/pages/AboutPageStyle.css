@@ -1,0 +1,135 @@
+.aboutPage {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(80px, 10vh, 120px) clamp(16px, 4vw, 40px) clamp(40px, 6vw, 80px);
+  gap: clamp(28px, 4vw, 56px);
+}
+
+.aboutPageLeftPart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2vw, 22px);
+}
+
+.aboutPageLeftPart h1,
+.aboutPageLeftPart h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  text-align: left;
+  line-height: 1.15;
+}
+
+.aboutPageLeftPart h1 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.aboutPageLeftPart h2 {
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 400;
+}
+
+.aboutPageLeftPart p {
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.6;
+}
+
+.aboutPageLeftPartButtonsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.aboutPageLeftPartButtonsContainer .btn {
+  min-width: 220px;
+}
+
+.aboutPageLeftPart img {
+  width: 120px;
+  margin-top: 8px;
+}
+
+.aboutPageLeftPart a {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+#coloredH2 {
+  color: var(--accent-deep);
+}
+
+#coloredBtn {
+  background-color: var(--accent);
+  border: 0;
+  color: var(--on-dark);
+}
+
+#coloredBtn:hover {
+  background-color: var(--accent-deep);
+}
+
+.aboutPageRightPart {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+  align-content: start;
+}
+
+.advantage {
+  background: var(--surface-veil);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  min-height: 170px;
+  padding: clamp(18px, 2vw, 28px);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.advantage:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.advantage h2 {
+  font-weight: 400;
+  color: var(--ink);
+  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+}
+
+.advantage p {
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .aboutPage {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 560px) {
+  .aboutPageRightPart {
+    grid-template-columns: 1fr;
+  }
+}
