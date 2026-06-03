@@ -78,6 +78,28 @@
 }
 
 /* Бургер */
+/* Тёмный хедер на кинематографичной главной */
+.header--dark .nav-link {
+  color: #ece3d2;
+}
+
+.header--dark .nav-link:hover {
+  color: var(--gold);
+}
+
+.header--dark .nav-link::after {
+  background-color: var(--gold);
+}
+
+.header--dark.scrolled {
+  background: rgba(12, 11, 10, 0.82);
+  box-shadow: 0 1px 0 rgba(211, 183, 104, 0.22);
+}
+
+.header--dark .menu-toggle span {
+  background-color: #ece3d2;
+}
+
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -134,5 +156,10 @@
 
   .menu-toggle {
     display: flex;
+  }
+
+  .header--dark .nav {
+    background: rgba(12, 11, 10, 0.97);
+    border-top-color: rgba(211, 183, 104, 0.22);
   }
 }

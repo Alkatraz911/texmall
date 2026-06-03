@@ -4,42 +4,41 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { homePageAPI, categoryAPI, type Collection } from "../services/api";
+import heroImg from "../assets/mmain.jpg";
+import placeholder from "../assets/placeholder-image.png";
 import "./styles.css";
-import { Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
 
-interface Advantage {
-  title: string;
-  description: string;
-  icon: string;
-}
+const API = process.env.REACT_APP_API_URL || "";
 
-interface HomePageData {
-  heroTitle: string;
-  heroSubtitle: string;
-  heroVideo: string;
-  advantages: Advantage[];
-  popularCollections: number[];
+// Первое доступное изображение коллекции (featured-продукт → любой продукт).
+function collectionImage(col: Collection): string {
+  const featured = col.products?.find((p) => p.id === col.featuredProductId);
+  const withImage =
+    (featured?.images?.length ? featured : null) ||
+    col.products?.find((p) => p.images?.length);
+  const img = withImage?.images?.[0];
+  return img ? `${API}${img}` : placeholder;
 }
 
 const HomePage: React.FC = () => {
-  const [data, setData] = useState<HomePageData | null>(null);
   const [collections, setCollections] = useState<Collection[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const pageData = await homePageAPI.getPage();
-        setData(pageData);
+        let popularIds: number[] = [];
+        try {
+          const pageData = await homePageAPI.getPage();
+          popularIds = pageData?.popularCollections ?? [];
+        } catch {
+          /* настройки главной не критичны — покажем первые коллекции */
+        }
 
         const response = await categoryAPI.getAll();
-        const popular = response.data.filter((col: Collection) =>
-          pageData.popularCollections.includes(col.id)
-        );
-        setCollections(popular);
+        const all: Collection[] = response.data;
+        const popular = all.filter((c) => popularIds.includes(c.id));
+        setCollections(popular.length ? popular : all.slice(0, 6));
       } catch (error) {
         console.error("Ошибка загрузки данных:", error);
       } finally {
@@ -50,56 +49,78 @@ const HomePage: React.FC = () => {
   }, []);
 
   if (loading) return <div className="loading">Загрузка...</div>;
-  if (!data) return <div className="loading">Данные главной страницы не найдены</div>;
+
+  const indexItems = collections.slice(0, 4);
 
   return (
-    <div className="hero-page-container">
-      <div className="home-page">
-        <section className="hero">
-          <div className="hero-overlay">
-            <div className="hero-content">
-              <h1 className="hero-title">{data.heroTitle}</h1>
-              <div className="hero-btn">
-                <Link to="/catalog" className="btn-luxury">
-                  Смотреть каталог &rarr;
-                </Link>
-              </div>
-            </div>
+    <div className="cin-page">
+      {/* ---------- Кинематографичный hero ---------- */}
+      <section className="cin-hero">
+        <img className="cin-bg" src={heroImg} alt="" />
+        <div className="cin-veil" />
+
+        <div className="cin-top">
+          <span className="cin-eyebrow">Текс Молл · мебельные ткани</span>
+        </div>
+
+        <div className="cin-main">
+          <h1 className="cin-title">
+            <span>Ткань как</span>
+            <span className="cin-title__accent">предмет желания</span>
+          </h1>
+          <Link to="/catalog" className="cin-cta">
+            Открыть каталог <i aria-hidden>→</i>
+          </Link>
+        </div>
+
+        {indexItems.length > 0 && (
+          <aside className="cin-index">
+            <span className="cin-index__head">Коллекции</span>
+            {indexItems.map((c, i) => (
+              <Link
+                to={`/category/${c.id}`}
+                className="cin-index__row"
+                key={c.id}
+              >
+                <span className="cin-index__n">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="cin-index__name">{c.name}</span>
+                <span className="cin-index__t">
+                  {c.products?.[0]?.type || "ткань"}
+                </span>
+              </Link>
+            ))}
+          </aside>
+        )}
+
+        <span className="cin-scroll">Листайте ↓</span>
+      </section>
+
+      {/* ---------- Витрина коллекций ---------- */}
+      {collections.length > 0 && (
+        <section className="cin-collections">
+          <h2 className="cin-h2">Коллекции</h2>
+          <div className="cin-grid">
+            {collections.map((c) => (
+              <Link to={`/category/${c.id}`} className="cin-card" key={c.id}>
+                <div className="cin-card__media">
+                  <img
+                    src={collectionImage(c)}
+                    alt={c.name}
+                    loading="lazy"
+                    onError={(e) => (e.currentTarget.src = placeholder)}
+                  />
+                </div>
+                <div className="cin-card__body">
+                  <h3>{c.name}</h3>
+                  <span className="cin-card__cta">Смотреть →</span>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
-
-        <section id="catalog" className="categories">
-          {collections.length > 0 && (
-            <Swiper
-              modules={[Navigation]}
-              spaceBetween={20}
-              slidesPerView={2}
-              navigation={true}
-              autoHeight={true}
-              breakpoints={{
-                320: { slidesPerView: 1, spaceBetween: 20 },
-                640: { slidesPerView: 2, spaceBetween: 30 },
-                1280: { slidesPerView: 3, spaceBetween: 40 },
-                2000: { slidesPerView: 4, spaceBetween: 50 },
-              }}
-              loop={true}
-            >
-              {collections.map((category) => (
-                <SwiperSlide key={category.id}>
-                  <Link to={`/category/${category.id}`} className="category-card">
-                    <div className="category-overlay">
-                      <div className="category-content">
-                        <h3>{category.name}</h3>
-                        <span className="btn btn-outline">Смотреть</span>
-                      </div>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          )}
-        </section>
-      </div>
+      )}
     </div>
   );
 };

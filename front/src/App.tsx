@@ -15,15 +15,12 @@ import BackgroundWrapper from "./components/ui/BackgroundWrapper";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
-import mainbkgnd from "./assets/mmain.jpg";
 import aboutbkgnd from "./assets/about.jpg";
 import contactbkgnd from "./assets/contacts1.jpg";
 
-// Сопоставление маршрута с фоновым изображением. Каталог и категории
-// намеренно остаются на нейтральной подложке, чтобы фактуры тканей
-// (карточки) читались без визуального шума.
+// Сопоставление маршрута с фоновым изображением. Главная (кинематографичный
+// hero), каталог и категории остаются на собственном/нейтральном фоне.
 function backgroundForPath(pathname: string): string | null {
-  if (pathname === "/") return mainbkgnd;
   if (pathname.startsWith("/about")) return aboutbkgnd;
   if (pathname.startsWith("/contact")) return contactbkgnd;
   return null;

@@ -1,7 +1,8 @@
 import axios from "axios"
 import { AboutPageData } from './types';
 
-const API_BASE_URL = `${process.env.REACT_APP_API_URL}/api` || "http://localhost:4321/api"
+const API_ORIGIN = process.env.REACT_APP_API_URL || "http://localhost:4321"
+const API_BASE_URL = `${API_ORIGIN}/api`
 
 const api = axios.create({
   baseURL: API_BASE_URL,

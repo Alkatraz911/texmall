@@ -4,12 +4,17 @@ import type React from "react"
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import "./Header.css"
-import logo from "../../assets/logoblack.png"
+import logoDark from "../../assets/logoblack.png"
+import logoLight from "../../assets/logo.png"
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+
+  // На главной — тёмный кинематографичный hero: хедер прозрачный со светлым логотипом.
+  const isHome = location.pathname === "/"
+  const logo = isHome ? logoLight : logoDark
 
   const isActive = (path: string) => (location.pathname === path ? "active" : "")
 
@@ -23,7 +28,7 @@ const Header: React.FC = () => {
   }, [])
 
   return (
-    <header className={`header${scrolled ? " scrolled" : ""}`}>
+    <header className={`header${scrolled ? " scrolled" : ""}${isHome ? " header--dark" : ""}`}>
       <div className="header-content">
         <Link to="/" className="logo" onClick={handleLinkClick}>
           <img src={logo} alt="Текс Молл" className="logo-img" />
