@@ -92,8 +92,18 @@ const ContactPage: React.FC = () => {
   if (!data) return <div className="empty-state">Данные контактов не найдены</div>;
 
   return (
-    <div className="contact-page">
-      <div className="contactsWrapper">
+    <div className="contact2">
+      <header className="contact2-head">
+        <span className="contact2-kicker">Контакты</span>
+        <h1 className="contact2-title">Свяжитесь с нами</h1>
+        <p className="contact2-sub">
+          Подберём ткань под вашу задачу и пришлём образцы. Заполните форму или
+          напишите нам напрямую.
+        </p>
+      </header>
+
+      <div className="contact-page">
+        <div className="contactsWrapper">
         <div className="contacts-section">
           <h4>{data.city1}</h4>
           <div className="contacts">
@@ -217,6 +227,7 @@ const ContactPage: React.FC = () => {
             </button>
           </form>
         </div>
+      </div>
       </div>
     </div>
   );

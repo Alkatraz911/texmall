@@ -4,8 +4,10 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { categoryAPI, type Collection } from "../services/api";
-import { VideoPlayer } from "../components/ui/VideoPlayer";
+import placeholder from "../assets/placeholder-image.png";
 import "./CatalogPage.css";
+
+const API = process.env.REACT_APP_API_URL || "";
 
 const CatalogPage: React.FC = () => {
   const [categories, setCategories] = useState<Collection[]>([]);
@@ -30,9 +32,7 @@ const CatalogPage: React.FC = () => {
   if (loading) {
     return (
       <div className="catalog-page">
-        <div className="container">
-          <div className="loading-state">Загрузка каталога...</div>
-        </div>
+        <div className="loading-state">Загрузка каталога...</div>
       </div>
     );
   }
@@ -40,60 +40,67 @@ const CatalogPage: React.FC = () => {
   if (error) {
     return (
       <div className="catalog-page">
-        <div className="container">
-          <div className="error-state">{error}</div>
-        </div>
+        <div className="error-state">{error}</div>
       </div>
     );
   }
 
   return (
-    <div
-      className="catalog-page"
-    >
-      {/* <div className="catalog-hero">
-        <div className="container">
-          <h1 className="catalog-title">Каталог тканей</h1>
-          <p className="catalog-subtitle">Выберите категорию тканей для просмотра доступных вариантов</p>
-        </div>
-      </div> */}
+    <div className="catalog-page">
+      <header className="catalog-head">
+        <span className="catalog-kicker">Текс Молл · каталог</span>
+        <h1 className="catalog-title">Коллекции тканей</h1>
+        <p className="catalog-subtitle">
+          Велюр, шенилл, рогожка и жаккард — выберите коллекцию, чтобы
+          рассмотреть цвета и характеристики.
+        </p>
+      </header>
 
       <section className="catalog-content">
-        
-          {categories.length === 0 ? (
-            <div className="empty-state">
-              <h3>Каталог пуст</h3>
-              <p>В данный момент категории тканей не добавлены</p>
-            </div>
-          ) : (
-            <div className="catalog-grid">
-              {categories.map((category) => {
-                let url = category.products.find(
-                  (product) => product.id === category.featuredProductId
-                )?.videos[0];
+        {categories.length === 0 ? (
+          <div className="empty-state">
+            <h3>Каталог пуст</h3>
+            <p>В данный момент коллекции не добавлены</p>
+          </div>
+        ) : (
+          <div className="catalog-grid">
+            {categories.map((category, i) => {
+              const featured = category.products?.find(
+                (p) => p.id === category.featuredProductId
+              );
+              const imgUrl =
+                featured?.images?.[0] ||
+                category.products?.find((p) => p.images?.length)?.images?.[0];
+              const poster = imgUrl ? API + imgUrl : placeholder;
 
-                return (
-                  <div key={category.id} className="category-card">
-                    <div className="category-overlayer">
-                      <VideoPlayer
-                        className="category-video"
-                        src={process.env.REACT_APP_API_URL + url}
-                      />
-                      <div className="category-content">
-                        <h3>{category.name}</h3>
-                        <Link
-                          to={`/category/${category.id}`}
-                          className="btn btn-outline"
-                        >
-                          Смотреть
-                        </Link>
-                      </div>
+              return (
+                <Link
+                  to={`/category/${category.id}`}
+                  key={category.id}
+                  className="cat-card"
+                >
+                  <div className="cat-card__media">
+                    <img
+                      src={poster}
+                      alt={category.name}
+                      loading="lazy"
+                      onError={(e) => (e.currentTarget.src = placeholder)}
+                    />
+                  </div>
+                  <div className="cat-card__overlay">
+                    <span className="cat-card__index">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="cat-card__row">
+                      <h3>{category.name}</h3>
+                      <span className="cat-card__cta">Смотреть →</span>
                     </div>
                   </div>
-                );
-              })}
-            </div>
-          )}
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </section>
     </div>
   );

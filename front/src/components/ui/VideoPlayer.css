@@ -1,49 +1,30 @@
+.vp-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-2);
+}
 
-        .video-wrapper {
-          position: relative;
-          width: 100%;
-          height: 100%;
-        }
+.vp-video,
+.vp-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-        .video-element {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 16px;
-          display: block;
-        }
+.vp-poster {
+  z-index: 1;
+  filter: blur(6px);
+  transform: scale(1.04);
+  transition: opacity 0.5s ease;
+}
 
-        .spinner-overlay {
-          position: absolute;
-          inset: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(0, 0, 0, 0.2);
-          border-radius: 16px;
-          animation: fadeIn 0.3s ease-in-out;
-        }
-
-        .spinner {
-          width: 48px;
-          height: 48px;
-          border: 4px solid rgba(255, 255, 255, 0.3);
-          border-top-color: #fff;
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
+.vp-poster--hidden {
+  opacity: 0;
+  pointer-events: none;
+}

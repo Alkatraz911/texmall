@@ -1,33 +1,37 @@
-import "./VideoPlayer.css"
+import { useState } from "react";
+import "./VideoPlayer.css";
 
 type VideoPlayerProps = {
   src: string;
+  poster?: string;
   className?: string;
 };
 
-export const VideoPlayer = ({ src, className }: VideoPlayerProps) => {
+export const VideoPlayer = ({ src, poster, className }: VideoPlayerProps) => {
+  const [ready, setReady] = useState(false);
+
   return (
-    <>
+    <div className={`vp-wrap${className ? ` ${className}` : ""}`}>
+      {/* Постер виден мгновенно, пока подгружается видео */}
+      {poster && (
+        <img
+          className={`vp-poster${ready ? " vp-poster--hidden" : ""}`}
+          src={poster}
+          alt=""
+          aria-hidden
+        />
+      )}
       <video
+        className="vp-video"
         src={src}
         autoPlay
         loop
         muted
         playsInline
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover", // ключевой момент
-          borderRadius: "16px",
-        }}
+        preload="auto"
+        poster={poster}
+        onLoadedData={() => setReady(true)}
       />
-      {/* {loading && (
-        <div className="spinner-overlay">
-          <div className="spinner" />
-        </div>
-      )} */}
-      
-    </>
+    </div>
   );
 };
-

@@ -1,6 +1,11 @@
 // App.tsx
-import type { ReactNode } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import HomePage from "./pages/HomePage";
@@ -11,29 +16,10 @@ import ContactPage from "./pages/ContactPage";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import { ToastContainer } from "react-toastify";
-import BackgroundWrapper from "./components/ui/BackgroundWrapper";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
-import aboutbkgnd from "./assets/about.jpg";
-import contactbkgnd from "./assets/contacts1.jpg";
-
-// Сопоставление маршрута с фоновым изображением. Главная (кинематографичный
-// hero), каталог и категории остаются на собственном/нейтральном фоне.
-function backgroundForPath(pathname: string): string | null {
-  if (pathname.startsWith("/about")) return aboutbkgnd;
-  if (pathname.startsWith("/contact")) return contactbkgnd;
-  return null;
-}
-
-function BackgroundLayout({ children }: { children: ReactNode }) {
-  const location = useLocation();
-  return (
-    <BackgroundWrapper image={backgroundForPath(location.pathname)}>
-      {children}
-    </BackgroundWrapper>
-  );
-}
+export type Theme = "dark" | "light";
 
 function NotFound() {
   return (
@@ -47,28 +33,56 @@ function NotFound() {
   );
 }
 
+function Shell({
+  theme,
+  toggleTheme,
+}: {
+  theme: Theme;
+  toggleTheme: () => void;
+}) {
+  // Тема применяется ко всему сайту, включая админку.
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
+
+  return (
+    <div className="bg-wrapper">
+      <div className="App">
+        <Header theme={theme} onToggleTheme={toggleTheme} />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/catalog" element={<CatalogPage />} />
+            <Route path="/category/:id" element={<CategoryPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+        <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+      </div>
+    </div>
+  );
+}
+
 function App() {
+  const [theme, setTheme] = useState<Theme>(
+    () => (localStorage.getItem("theme") as Theme) || "dark"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () =>
+    setTheme((t) => (t === "dark" ? "light" : "dark"));
+
   return (
     <Router>
-      <BackgroundLayout>
-        <div className="App">
-          <Header />
-          <main className="main-content">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/catalog" element={<CatalogPage />} />
-              <Route path="/category/:id" element={<CategoryPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-          <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-        </div>
-      </BackgroundLayout>
+      <Shell theme={theme} toggleTheme={toggleTheme} />
     </Router>
   );
 }

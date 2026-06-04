@@ -10,10 +10,10 @@
 }
 
 .header.scrolled {
-  background: rgba(247, 245, 241, 0.82);
+  background: var(--header-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 1px 0 var(--line), var(--shadow);
+  box-shadow: var(--header-shadow);
 }
 
 .header-content {
@@ -46,9 +46,9 @@
 .nav-link {
   font-family: var(--font-body);
   text-decoration: none;
-  color: var(--ink);
+  color: var(--fg);
   font-weight: 700;
-  font-size: clamp(14px, 1.1vw, 18px);
+  font-size: clamp(14px, 1.1vw, 17px);
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: color 0.3s var(--ease);
@@ -77,29 +77,74 @@
   transform: scaleX(1);
 }
 
-/* Бургер */
-/* Тёмный хедер на кинематографичной главной */
-.header--dark .nav-link {
+/* Действия справа */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline-2);
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
+    background 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(12deg);
+}
+
+/* Над hero главной до скролла — скрим для читаемости.
+   В тёмной теме hero тёмный → светлый текст; в светлой hero светлый → тёмный текст. */
+[data-theme="dark"] .header--over-hero:not(.scrolled) {
+  background: linear-gradient(
+    180deg,
+    rgba(12, 11, 10, 0.6) 0%,
+    rgba(12, 11, 10, 0) 100%
+  );
+}
+
+[data-theme="dark"] .header--over-hero:not(.scrolled) .nav-link {
   color: #ece3d2;
 }
 
-.header--dark .nav-link:hover {
+[data-theme="dark"] .header--over-hero:not(.scrolled) .nav-link:hover {
   color: var(--gold);
 }
 
-.header--dark .nav-link::after {
+[data-theme="dark"] .header--over-hero:not(.scrolled) .nav-link::after {
   background-color: var(--gold);
 }
 
-.header--dark.scrolled {
-  background: rgba(12, 11, 10, 0.82);
-  box-shadow: 0 1px 0 rgba(211, 183, 104, 0.22);
+[data-theme="dark"] .header--over-hero:not(.scrolled) .theme-toggle {
+  color: #ece3d2;
+  border-color: rgba(236, 227, 210, 0.4);
 }
 
-.header--dark .menu-toggle span {
+[data-theme="dark"] .header--over-hero:not(.scrolled) .menu-toggle span {
   background-color: #ece3d2;
 }
 
+[data-theme="light"] .header--over-hero:not(.scrolled) {
+  background: linear-gradient(
+    180deg,
+    rgba(244, 241, 236, 0.75) 0%,
+    rgba(244, 241, 236, 0) 100%
+  );
+}
+
+/* Бургер */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -113,8 +158,9 @@
 .menu-toggle span {
   width: 26px;
   height: 2px;
-  background-color: var(--ink);
-  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+  background-color: var(--fg);
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease),
+    background-color 0.3s var(--ease);
 }
 
 .menu-toggle.is-open span:nth-child(1) {
@@ -138,14 +184,18 @@
     flex-direction: column;
     gap: 18px;
     padding: 28px 20px;
-    background: rgba(247, 245, 241, 0.97);
+    background: var(--header-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--hairline-2);
     transform: translateY(-120%);
     opacity: 0;
     visibility: hidden;
     transition: all 0.35s var(--ease);
+  }
+
+  .nav .nav-link {
+    color: var(--fg);
   }
 
   .nav-open {
@@ -156,10 +206,5 @@
 
   .menu-toggle {
     display: flex;
-  }
-
-  .header--dark .nav {
-    background: rgba(12, 11, 10, 0.97);
-    border-top-color: rgba(211, 183, 104, 0.22);
   }
 }

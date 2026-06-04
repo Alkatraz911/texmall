@@ -1,0 +1,178 @@
+/* ============================================================
+   Тёмная тема для админ-панели (реагирует на переключатель)
+   ============================================================ */
+
+/* Каркас дашборда */
+[data-theme="dark"] .admin-dashboard {
+  background: var(--bg);
+}
+[data-theme="dark"] .admin-header {
+  background: var(--bg-2);
+  border-bottom-color: var(--hairline-2);
+}
+[data-theme="dark"] .admin-title h1 {
+  color: var(--fg-strong);
+}
+[data-theme="dark"] .admin-title p {
+  color: var(--fg-muted);
+}
+[data-theme="dark"] .admin-tabs {
+  border-bottom-color: var(--hairline-2);
+}
+[data-theme="dark"] .tab-btn {
+  color: var(--fg-muted);
+}
+[data-theme="dark"] .tab-btn:hover,
+[data-theme="dark"] .tab-btn.active {
+  color: var(--accent);
+}
+[data-theme="dark"] .admin-tab-content {
+  background: var(--bg-2);
+  border-color: var(--hairline-2);
+  color: var(--fg);
+}
+[data-theme="dark"] .admin-content h3 {
+  color: var(--fg-strong);
+}
+[data-theme="dark"] .logout-btn {
+  color: var(--fg);
+}
+
+/* Контейнеры менеджеров */
+[data-theme="dark"] .cm-container,
+[data-theme="dark"] .fm-container,
+[data-theme="dark"] .admin-home-container,
+[data-theme="dark"] .admin-about-container,
+[data-theme="dark"] .admin-contact-container,
+[data-theme="dark"] .form-container,
+[data-theme="dark"] .email-settings {
+  background: transparent;
+  color: var(--fg);
+  box-shadow: none;
+}
+
+/* Секции / карточки / модалки */
+[data-theme="dark"] .admin-home-section,
+[data-theme="dark"] .admin-about-section,
+[data-theme="dark"] .admin-about-item,
+[data-theme="dark"] .cm-modal-content,
+[data-theme="dark"] .fm-modal-content,
+[data-theme="dark"] .cm-category-item,
+[data-theme="dark"] .fm-fabric-item,
+[data-theme="dark"] .message-item,
+[data-theme="dark"] .message-modal-content {
+  background: var(--bg-2);
+  color: var(--fg);
+  border-color: var(--hairline-2);
+  box-shadow: none;
+}
+
+[data-theme="dark"] .message-modal-header,
+[data-theme="dark"] .message-modal-footer {
+  border-color: var(--hairline-2);
+}
+
+/* Заголовки */
+[data-theme="dark"] .admin-home-header h2,
+[data-theme="dark"] .admin-about-header h2,
+[data-theme="dark"] .admin-contact-header h2,
+[data-theme="dark"] .admin-about-section h3,
+[data-theme="dark"] .admin-home-section h3,
+[data-theme="dark"] .cm-category-info h4,
+[data-theme="dark"] .fm-fabric-info h4,
+[data-theme="dark"] .form-container h2,
+[data-theme="dark"] .contact-messages h2,
+[data-theme="dark"] .contact-messages h3,
+[data-theme="dark"] .email-settings h2,
+[data-theme="dark"] .message-info h4,
+[data-theme="dark"] .message-modal-header h3 {
+  color: var(--fg-strong);
+}
+
+/* Вторичный текст / подписи */
+[data-theme="dark"] .admin-home-checkbox label,
+[data-theme="dark"] .cm-form-group label,
+[data-theme="dark"] .fm-form-group label,
+[data-theme="dark"] .admin-about-form-group label,
+[data-theme="dark"] .admin-contact-form-group label,
+[data-theme="dark"] .form-group label,
+[data-theme="dark"] .al-form-group label,
+[data-theme="dark"] .cm-category-info p,
+[data-theme="dark"] .fm-fabric-category,
+[data-theme="dark"] .fm-fabric-description,
+[data-theme="dark"] .fm-fabric-meta p,
+[data-theme="dark"] .message-email,
+[data-theme="dark"] .message-phone,
+[data-theme="dark"] .message-date,
+[data-theme="dark"] .message-content p,
+[data-theme="dark"] .detail-row,
+[data-theme="dark"] .message-text p,
+[data-theme="dark"] .messages-stats,
+[data-theme="dark"] .admin-home-loading,
+[data-theme="dark"] .admin-about-loading,
+[data-theme="dark"] .admin-contact-loading,
+[data-theme="dark"] .cm-empty-state,
+[data-theme="dark"] .fm-empty-state,
+[data-theme="dark"] .email-settings p,
+[data-theme="dark"] .loading-state {
+  color: var(--fg-muted);
+}
+
+/* Поля ввода */
+[data-theme="dark"] .admin-home-input,
+[data-theme="dark"] .cm-form-group input,
+[data-theme="dark"] .cm-form-group select,
+[data-theme="dark"] .cm-form-group textarea,
+[data-theme="dark"] .fm-form-group input,
+[data-theme="dark"] .fm-form-group select,
+[data-theme="dark"] .fm-form-group textarea,
+[data-theme="dark"] .fm-search-bar input,
+[data-theme="dark"] .admin-about-input,
+[data-theme="dark"] .admin-about-textarea,
+[data-theme="dark"] .admin-contact-input,
+[data-theme="dark"] .admin-contact-textarea,
+[data-theme="dark"] .update-email input,
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .al-form-group input,
+[data-theme="dark"] .message-item .textinput {
+  background: var(--field-bg);
+  color: var(--fg);
+  border-color: var(--field-border);
+}
+
+[data-theme="dark"] .admin-home-input::placeholder,
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .al-form-group input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: var(--fg-muted);
+}
+
+/* Плейсхолдеры медиа / разделители / иконки */
+[data-theme="dark"] .cm-fabric-image,
+[data-theme="dark"] .fm-fabric-image,
+[data-theme="dark"] .fm-image-item,
+[data-theme="dark"] .fm-video-item {
+  background: var(--bg);
+}
+[data-theme="dark"] .cm-category-actions,
+[data-theme="dark"] .fm-fabric-actions {
+  border-top-color: var(--hairline-2);
+}
+[data-theme="dark"] .cm-close-btn,
+[data-theme="dark"] .fm-close-btn,
+[data-theme="dark"] .cm-btn-icon,
+[data-theme="dark"] .fm-btn-icon {
+  color: var(--fg);
+}
+
+/* Логин */
+[data-theme="dark"] .al-login-card {
+  background: var(--bg-2);
+  border-color: var(--hairline-2);
+}
+[data-theme="dark"] .al-login-header h1 {
+  color: var(--fg-strong);
+}
+[data-theme="dark"] .al-login-header p {
+  color: var(--fg-muted);
+}

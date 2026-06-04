@@ -74,6 +74,42 @@
 }
 
 /* ============================================================
+   Темы публичного сайта (переключение light/dark)
+   ============================================================ */
+:root,
+[data-theme="dark"] {
+  --bg: #0c0b0a;
+  --bg-2: #161412;
+  --fg: #f3ecdf;
+  --fg-strong: #fbf6ec;
+  --fg-muted: rgba(243, 236, 223, 0.62);
+  --hairline-2: rgba(211, 183, 104, 0.22);
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(211, 183, 104, 0.2);
+  --field-bg: #161412;
+  --field-border: rgba(211, 183, 104, 0.28);
+  --header-bg: rgba(12, 11, 10, 0.82);
+  --header-shadow: 0 1px 0 rgba(211, 183, 104, 0.22);
+  --elev-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] {
+  --bg: #f4f1ec;
+  --bg-2: #ffffff;
+  --fg: #2c2620;
+  --fg-strong: #1a1714;
+  --fg-muted: #6f675d;
+  --hairline-2: #e7e0d4;
+  --card-bg: #ffffff;
+  --card-border: #e7e0d4;
+  --field-bg: #ffffff;
+  --field-border: #e4ded4;
+  --header-bg: rgba(247, 245, 241, 0.85);
+  --header-shadow: 0 1px 0 #e4ded4, 0 10px 30px rgba(26, 23, 20, 0.08);
+  --elev-shadow: 0 18px 40px rgba(26, 23, 20, 0.12);
+}
+
+/* ============================================================
    Сброс и базовые стили
    ============================================================ */
 *,
@@ -100,10 +136,11 @@ body,
 body {
   font-family: var(--font-body);
   font-weight: 400;
-  color: var(--ink);
-  background-color: var(--surface);
+  color: var(--fg);
+  background-color: var(--bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.4s var(--ease), color 0.4s var(--ease);
 }
 
 img {
@@ -127,25 +164,7 @@ a {
 .bg-wrapper {
   position: relative;
   min-height: 100%;
-  background-color: var(--surface);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-/* Градиент-вуаль поверх фотофона — гарантирует контраст текста */
-.bg-wrapper--photo::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.55) 0%,
-    rgba(255, 255, 255, 0.25) 35%,
-    rgba(255, 255, 255, 0.55) 100%
-  );
-  pointer-events: none;
-  z-index: 0;
+  background-color: var(--bg);
 }
 
 .App {
@@ -212,6 +231,53 @@ a {
   transform: translateY(-2px);
 }
 
+/* Лакшери-кнопки (страницы About/Contact) */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 1rem;
+  color: #1a1714;
+  background: linear-gradient(135deg, #e7cf94, #c69c6d);
+  padding: 14px 32px;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 14px 34px rgba(198, 156, 109, 0.32);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.btn-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 46px rgba(198, 156, 109, 0.46);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 1rem;
+  color: var(--fg);
+  background: transparent;
+  padding: 14px 32px;
+  border-radius: 999px;
+  border: 1.5px solid var(--fg);
+  text-decoration: none;
+  transition: transform 0.3s var(--ease), background 0.3s var(--ease),
+    color 0.3s var(--ease);
+}
+
+.btn-ghost:hover {
+  transform: translateY(-3px);
+  background: var(--fg);
+  color: var(--bg);
+}
+
 /* Премиум-CTA */
 .btn-luxury {
   display: inline-flex;
@@ -275,4 +341,101 @@ a {
   font-size: 1.2rem;
   color: var(--ink-soft);
   margin-bottom: 10px;
+}
+
+/* ============================================================
+   Карточки коллекций (общие: каталог + слайдер на главной)
+   ============================================================ */
+.cat-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  background: var(--bg-2);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--elev-shadow);
+  transition: transform 0.5s var(--ease), border-color 0.5s var(--ease),
+    box-shadow 0.5s var(--ease);
+}
+
+.cat-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+}
+
+.cat-card__media {
+  position: absolute;
+  inset: 0;
+}
+
+.cat-card__media img,
+.cat-card__media video,
+.cat-card__media .category-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease);
+}
+
+.cat-card:hover .cat-card__media img,
+.cat-card:hover .cat-card__media video {
+  transform: scale(1.07);
+}
+
+.cat-card__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(16px, 1.8vw, 26px);
+  background: linear-gradient(
+    180deg,
+    rgba(8, 7, 6, 0.35) 0%,
+    rgba(8, 7, 6, 0) 32%,
+    rgba(8, 7, 6, 0.85) 100%
+  );
+}
+
+.cat-card__index {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.cat-card__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cat-card__row h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  color: var(--gold);
+  line-height: 1.1;
+}
+
+.cat-card__cta {
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  color: var(--gold);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.cat-card:hover .cat-card__cta {
+  opacity: 1;
+  transform: translateX(0);
 }

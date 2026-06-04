@@ -108,7 +108,14 @@ const CategoryPage: React.FC = () => {
                 onError={(e) => (e.currentTarget.src = placeholderImage)}
               />
             ) : selectedVideo ? (
-              <VideoPlayer src={selectedVideo} />
+              <VideoPlayer
+                src={selectedVideo}
+                poster={
+                  selectedFabric?.images?.[0]
+                    ? process.env.REACT_APP_API_URL + selectedFabric.images[0]
+                    : undefined
+                }
+              />
             ) : (
               <div className="nocontent">Цвета коллекции пока не загружены</div>
             )}
@@ -134,6 +141,7 @@ const CategoryPage: React.FC = () => {
                       src={imgUrl}
                       alt={selectedFabric.name}
                       loading="lazy"
+                      decoding="async"
                       onError={(e) => (e.currentTarget.src = placeholderImage)}
                     />
                     <span className="fabric-preview-number"></span>
@@ -177,6 +185,7 @@ const CategoryPage: React.FC = () => {
                       src={previewImg}
                       alt={`${fabric.name} видео превью`}
                       loading="lazy"
+                      decoding="async"
                       onError={(e) => (e.currentTarget.src = placeholderImage)}
                     />
                     <Play className="fabric-preview-videoicon" />

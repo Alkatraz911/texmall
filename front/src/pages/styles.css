@@ -1,22 +1,21 @@
 /* ============================================================
-   Главная — кинематографичная люкс-тема
+   Главная — кинематографичный hero + слайдер коллекций
    ============================================================ */
 .cin-page {
   width: 100%;
-  background: #0c0b0a;
-  color: #f3ecdf;
+  background: var(--bg);
+  color: var(--fg);
 }
 
-/* ---------- HERO ---------- */
+/* ---------- HERO (всегда тёмный, кинокадр) ---------- */
 .cin-hero {
   position: relative;
   min-height: calc(100svh - var(--header-h));
   overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto 1fr auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   padding: clamp(24px, 4vw, 56px);
-  gap: 16px;
 }
 
 .cin-bg {
@@ -32,21 +31,27 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 7, 6, 0.55) 0%, rgba(8, 7, 6, 0) 30%),
-    linear-gradient(0deg, rgba(8, 7, 6, 0.88) 0%, rgba(8, 7, 6, 0.1) 55%),
-    linear-gradient(90deg, rgba(8, 7, 6, 0.5) 0%, rgba(8, 7, 6, 0) 60%);
+    linear-gradient(180deg, rgba(8, 7, 6, 0.5) 0%, rgba(8, 7, 6, 0) 28%),
+    linear-gradient(0deg, rgba(8, 7, 6, 0.88) 0%, rgba(8, 7, 6, 0.1) 55%);
 }
 
-.cin-top,
-.cin-main,
-.cin-index,
-.cin-scroll {
+[data-theme="light"] .cin-veil {
+  background:
+    linear-gradient(180deg, rgba(244, 241, 236, 0.6) 0%, rgba(244, 241, 236, 0) 30%),
+    linear-gradient(0deg, rgba(244, 241, 236, 0.9) 0%, rgba(244, 241, 236, 0.15) 58%);
+}
+
+.cin-hero__content {
   position: relative;
   z-index: 1;
-}
-
-.cin-top {
-  grid-column: 1 / -1;
+  max-width: var(--maxw);
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(18px, 3vw, 32px);
+  animation: cinRise 1s var(--ease) both;
 }
 
 .cin-eyebrow {
@@ -57,37 +62,23 @@
   color: var(--gold);
 }
 
-/* Заголовок внахлёст */
-.cin-main {
-  grid-column: 1;
-  grid-row: 2 / 4;
-  align-self: end;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: clamp(20px, 3vw, 34px);
-  animation: cinRise 1s var(--ease) both;
+[data-theme="light"] .cin-eyebrow {
+  color: #7c5a2e;
 }
 
 .cin-title {
+  max-width: 18ch;
   font-family: var(--font-display);
   font-weight: 700;
   text-transform: uppercase;
-  line-height: 0.92;
+  line-height: 0.95;
   margin: 0;
-}
-
-.cin-title span {
-  display: block;
-  font-size: clamp(2.6rem, 8vw, 6.6rem);
+  font-size: clamp(2.6rem, 8vw, 6.2rem);
   color: #fbf6ec;
 }
 
-.cin-title__accent {
-  color: var(--gold);
-  font-weight: 400;
-  font-style: italic;
-  text-transform: none;
+[data-theme="light"] .cin-title {
+  color: var(--fg-strong);
 }
 
 .cin-cta {
@@ -121,89 +112,35 @@
   transform: translateX(5px);
 }
 
-/* Лукбук-индекс */
-.cin-index {
-  grid-column: 2;
-  grid-row: 2;
-  align-self: start;
-  width: clamp(230px, 22vw, 300px);
-  display: flex;
-  flex-direction: column;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(211, 183, 104, 0.28);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: var(--radius);
-  padding: 6px 18px 12px;
-  animation: cinRise 1s var(--ease) 0.15s both;
-}
-
-.cin-index__head {
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-size: 11px;
-  color: var(--gold);
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.cin-index__row {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: baseline;
-  gap: 12px;
-  padding: 13px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  text-decoration: none;
-  color: #f3ecdf;
-  transition: padding-left 0.3s var(--ease), color 0.3s var(--ease);
-}
-
-.cin-index__row:last-child {
-  border-bottom: none;
-}
-
-.cin-index__row:hover {
-  padding-left: 8px;
-  color: var(--gold);
-}
-
-.cin-index__n {
-  font-size: 11px;
-  color: var(--gold);
-  font-variant-numeric: tabular-nums;
-}
-
-.cin-index__name {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  font-size: 1.1rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.cin-index__t {
-  font-size: 0.78rem;
-  color: rgba(243, 236, 223, 0.6);
-}
-
 .cin-scroll {
-  grid-column: 2;
-  grid-row: 3;
-  align-self: end;
-  justify-self: end;
+  position: absolute;
+  right: clamp(24px, 4vw, 56px);
+  bottom: clamp(24px, 4vw, 56px);
+  z-index: 1;
   letter-spacing: 2px;
   text-transform: uppercase;
   font-size: 11px;
   color: rgba(243, 236, 223, 0.7);
 }
 
-/* ---------- Витрина коллекций ---------- */
+[data-theme="light"] .cin-scroll {
+  color: var(--fg-muted);
+}
+
+/* ---------- Слайдер коллекций ---------- */
 .cin-collections {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: clamp(48px, 7vw, 100px) clamp(20px, 5vw, 56px);
+}
+
+/* Шапка секции: заголовок слева, навигация справа */
+.cin-collections__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: clamp(20px, 3vw, 36px);
 }
 
 .cin-h2 {
@@ -212,78 +149,43 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-  color: #fbf6ec;
-  text-align: center;
-  margin-bottom: clamp(28px, 4vw, 52px);
+  color: var(--fg-strong);
+  margin: 0;
 }
 
-.cin-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(14px, 1.6vw, 24px);
-}
-
-.cin-card {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(211, 183, 104, 0.22);
-  transition: transform 0.45s var(--ease), border-color 0.45s var(--ease);
-}
-
-.cin-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--gold);
-}
-
-.cin-card__media {
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-}
-
-.cin-card__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s var(--ease);
-}
-
-.cin-card:hover .cin-card__media img {
-  transform: scale(1.07);
-}
-
-.cin-card__body {
+.cin-nav {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 10px;
-  padding: 16px 20px 20px;
+  flex-shrink: 0;
 }
 
-.cin-card__body h3 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-size: 1.25rem;
-  color: #fbf6ec;
+.cin-nav button {
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--accent);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease),
+    border-color 0.25s var(--ease), transform 0.25s var(--ease);
 }
 
-.cin-card__cta {
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
-  color: var(--gold);
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateX(-6px);
-  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+.cin-nav button:hover {
+  background: var(--accent);
+  color: #1a1714;
+  border-color: var(--accent);
+  transform: scale(1.06);
 }
 
-.cin-card:hover .cin-card__cta {
-  opacity: 1;
-  transform: translateX(0);
+/* Слайдер выровнен по контейнеру (как заголовок) */
+.cin-swiper {
+  padding: 4px 2px 10px;
 }
 
 /* ---------- Анимации ---------- */
@@ -309,43 +211,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cin-bg,
-  .cin-main,
-  .cin-index {
+  .cin-hero__content {
     animation: none;
-  }
-}
-
-/* ---------- Адаптив ---------- */
-@media (max-width: 980px) {
-  .cin-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 860px) {
-  .cin-hero {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto 1fr auto;
-  }
-
-  .cin-index {
-    grid-column: 1;
-    grid-row: auto;
-    width: 100%;
-  }
-
-  .cin-main {
-    grid-column: 1;
-    grid-row: auto;
-  }
-
-  .cin-scroll {
-    display: none;
-  }
-}
-
-@media (max-width: 540px) {
-  .cin-grid {
-    grid-template-columns: 1fr;
   }
 }

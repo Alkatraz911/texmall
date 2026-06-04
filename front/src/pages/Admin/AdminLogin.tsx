@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { adminAPI } from "../../services/api";
 import "./AdminLogin.css";
+import "../../components/Admin/admin-theme.css";
 
 const AdminLogin: React.FC = () => {
   const [credentials, setCredentials] = useState({ login: "", password: "" });
